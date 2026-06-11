@@ -263,6 +263,11 @@ textarea {
 .legacy-sidebar {
   background: #d6d6d6;
   padding: 28px 16px 32px;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  align-self: start;
 }
 
 .sidebar-block + .sidebar-block {
