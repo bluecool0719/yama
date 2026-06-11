@@ -407,7 +407,7 @@
         ${submitted && question.notes && question.notes.length ? `<div class="question-note">${question.notes.map(escapeHtml).join(" ")}</div>` : ""}
         <div class="answer-panel ${submitted ? "visible" : ""}">
           <p class="answer-title">정답 / 메모</p>
-          <p>${question.answer ? renderRichText(question.answer) : "정답 정보 없음"}</p>
+          ${question.inputType !== "radio" && question.inputType !== "checkbox" ? `<p>${question.answer ? renderRichText(question.answer) : "정답 정보 없음"}</p>` : ""}
           ${result ? `<p>${escapeHtml(result.message)}</p>` : ""}
         </div>
       </article>
@@ -426,9 +426,7 @@
             const markerValue = record.marker[optionValue] || "?";
             const isCorrect = correctLabels.has(optionValue);
             const isSelected = record.selections.includes(optionValue);
-            const rowClass = submitted
-              ? isCorrect ? "option-row option-correct" : isSelected ? "option-row option-wrong" : "option-row"
-              : "option-row";
+            const rowClass = submitted && isCorrect ? "option-row option-correct" : "option-row";
             return `
               <label class="${rowClass}">
                 <input
