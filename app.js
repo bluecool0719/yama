@@ -404,7 +404,7 @@
         </div>
         ${renderInputBlock(question, record, submitted, getSelectedSubject())}
         ${renderReviewMemoBlock(question, record, submitted)}
-        ${question.notes && question.notes.length ? `<div class="question-note">${question.notes.map(escapeHtml).join(" ")}</div>` : ""}
+        ${submitted && question.notes && question.notes.length ? `<div class="question-note">${question.notes.map(escapeHtml).join(" ")}</div>` : ""}
         <div class="answer-panel ${submitted ? "visible" : ""}">
           <p class="answer-title">정답 / 메모</p>
           <p>${question.answer ? renderRichText(question.answer) : "정답 정보 없음"}</p>
