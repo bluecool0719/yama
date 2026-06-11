@@ -417,14 +417,20 @@
   function renderInputBlock(question, record, submitted, subject) {
     if (question.inputType === "radio" || question.inputType === "checkbox") {
       const orderedOptions = getOrderedOptions(subject, question);
+      const correctLabels = submitted ? new Set(parseObjectiveAnswer(question)) : new Set();
       return `
         <div class="option-list">
           ${orderedOptions.map((option, optionIndex) => {
             const optionValue = String(option.label);
             const checked = record.selections.includes(optionValue) ? "checked" : "";
             const markerValue = record.marker[optionValue] || "?";
+            const isCorrect = correctLabels.has(optionValue);
+            const isSelected = record.selections.includes(optionValue);
+            const rowClass = submitted
+              ? isCorrect ? "option-row option-correct" : isSelected ? "option-row option-wrong" : "option-row"
+              : "option-row";
             return `
-              <label class="option-row">
+              <label class="${rowClass}">
                 <input
                   class="option-input"
                   type="checkbox"
@@ -440,7 +446,7 @@
                   <option value="o" ${markerValue === "o" ? "selected" : ""}>o</option>
                   <option value="x" ${markerValue === "x" ? "selected" : ""}>x</option>
                 </select>
-                <span class="option-text">${escapeHtml(option.label)} ${renderRichText(option.text)}</span>
+                <span class="option-text">${getCircledNumber(optionIndex)} ${renderRichText(option.text)}</span>
               </label>
             `;
           }).join("")}

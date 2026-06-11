@@ -855,6 +855,18 @@ body.review-screen-mode .legacy-main {
   accent-color: var(--accent);
 }
 
+.option-row.option-correct {
+  background: #d4f5d4;
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+.option-row.option-wrong {
+  background: #fdd;
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
 .option-marker {
   width: 100%;
   padding: 8px 10px;
