@@ -440,7 +440,7 @@
                   <option value="o" ${markerValue === "o" ? "selected" : ""}>o</option>
                   <option value="x" ${markerValue === "x" ? "selected" : ""}>x</option>
                 </select>
-                <span class="option-text">${getCircledNumber(optionIndex)} ${renderRichText(option.text)}</span>
+                <span class="option-text">${escapeHtml(option.label)} ${renderRichText(option.text)}</span>
               </label>
             `;
           }).join("")}
